@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "Mini Memo",
+  "version": "1.0",
+  "description": "Simple memo app in popup",
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon.png",
+      "32": "icon.png",
+      "48": "icon.png",
+      "128": "icon.png"
+    }
+  },
+  "permissions": ["storage"]
+}
