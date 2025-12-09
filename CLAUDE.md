@@ -4,7 +4,7 @@
 
 ## プロジェクト概要
 
-「Mini Memo」というChrome拡張機能です。ポップアップ形式のシンプルなメモアプリケーションで、localStorageを使用してメモデータをローカルに保存します。React 19、TypeScript、Viteを使用したモダンな構成になっています。
+「Mini Memo」というChrome拡張機能です。ポップアップ形式のシンプルなメモアプリケーションで、localStorageを使用してメモデータをローカルに保存します。React 19、TypeScript、Tailwind CSS、Viteを使用したモダンな構成になっています。
 
 ## アーキテクチャ
 
@@ -13,7 +13,13 @@
 **フロントエンド**: React 19 + TypeScriptを使用したコンポーネントベースの構成：
 - `src/Popup.tsx` - メインのReactコンポーネント（メモ入力とlocalStorage連携、型安全）
 - `src/main.tsx` - Reactのエントリーポイント
-- `src/popup.css` - 400px幅、320px高のポップアップウィンドウのスタイリング
+- `src/popup.css` - Tailwind CSSディレクティブ（@tailwind base/components/utilities）
+
+**スタイリング**: Tailwind CSS v4を使用したユーティリティファーストのスタイリング：
+- ユーティリティクラスによる高速な開発
+- `tailwind.config.js` - カスタムテーマ設定
+- `postcss.config.js` - @tailwindcss/postcssプラグイン設定
+- レスポンシブデザインとダークモード対応の準備
 
 **型システム**:
 - TypeScript strict mode有効
@@ -100,11 +106,13 @@ memo-extension/
 ├── src/                # ソースコード（TypeScript）
 │   ├── Popup.tsx      # メインReactコンポーネント
 │   ├── main.tsx       # Reactエントリーポイント
-│   └── popup.css      # スタイル
+│   └── popup.css      # Tailwind CSSディレクティブ
 ├── manifest.json      # 拡張機能マニフェスト（Manifest V3）
 ├── popup.html         # HTMLエントリーポイント
 ├── vite.config.ts     # Vite設定（TypeScript）
 ├── tsconfig.json      # TypeScript設定
+├── tailwind.config.js # Tailwind CSS設定
+├── postcss.config.js  # PostCSS設定
 ├── package.json       # 依存関係とスクリプト
 ├── icon.png           # 拡張機能アイコン
 ├── dist/              # ビルド出力（gitignore）
