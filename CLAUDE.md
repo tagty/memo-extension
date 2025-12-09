@@ -12,7 +12,7 @@
 - `manifest.json` - 拡張機能の設定（storage権限を要求）
 - `popup.html` - textareaを含むポップアップUI
 - `popup.js` - メモ内容をlocalStorageに自動保存するJavaScript
-- `popup.css` - 280px幅のポップアップウィンドウのスタイリング
+- `popup.css` - 400px幅、320px高のポップアップウィンドウのスタイリング
 - `icon.png` - 拡張機能のアイコン（全サイズ）
 
 **データ永続化**: 現在はpopup.js内でlocalStorageを使用してメモ内容を保存しています（popup.js:5, 9行目）。manifest.jsonではChromeのストレージAPIのための"storage"権限を宣言していますが、実装ではlocalStorageを使用している点に注意してください。
