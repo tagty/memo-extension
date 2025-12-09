@@ -114,6 +114,10 @@
 - [x] TypeScriptへの移行
   - React 19 + TypeScriptで型安全なコードベースを実現
   - strict mode有効化、Chrome拡張機能APIの型定義を追加
+- [x] Tailwind CSSの導入
+  - ユーティリティファーストのスタイリングに移行
+  - Tailwind CSS v4 + @tailwindcss/postcss
+  - レスポンシブデザインとダークモード対応の準備
 
 ---
 
@@ -128,3 +132,4 @@
 - 2025-12-09: 初版作成
 - 2025-12-09: React 19とViteの導入完了を反映
 - 2025-12-09: TypeScriptへの移行完了を反映
+- 2025-12-09: Tailwind CSSの導入完了を反映

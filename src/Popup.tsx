@@ -18,10 +18,11 @@ function Popup(): JSX.Element {
   }
 
   return (
-    <div>
-      <h1>Memo</h1>
+    <div className="w-[400px] m-0 p-2.5 font-sans">
+      <h1 className="mb-2.5 text-base">Memo</h1>
       <textarea
         id="memo"
+        className="w-full h-80 text-sm p-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
         value={memo}
         onChange={handleChange}
         placeholder="メモを入力してください..."
