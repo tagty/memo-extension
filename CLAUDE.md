@@ -4,28 +4,34 @@
 
 ## プロジェクト概要
 
-「Mini Memo」というChrome拡張機能です。ポップアップ形式のシンプルなメモアプリケーションで、localStorageを使用してメモデータをローカルに保存します。React 19とViteを使用したモダンな構成になっています。
+「Mini Memo」というChrome拡張機能です。ポップアップ形式のシンプルなメモアプリケーションで、localStorageを使用してメモデータをローカルに保存します。React 19、TypeScript、Viteを使用したモダンな構成になっています。
 
 ## アーキテクチャ
 
 **Manifest V3拡張機能**: Chrome Extension Manifest V3形式を使用
 
-**フロントエンド**: React 19を使用したコンポーネントベースの構成：
-- `src/Popup.jsx` - メインのReactコンポーネント（メモ入力とlocalStorage連携）
-- `src/main.jsx` - Reactのエントリーポイント
+**フロントエンド**: React 19 + TypeScriptを使用したコンポーネントベースの構成：
+- `src/Popup.tsx` - メインのReactコンポーネント（メモ入力とlocalStorage連携、型安全）
+- `src/main.tsx` - Reactのエントリーポイント
 - `src/popup.css` - 400px幅、320px高のポップアップウィンドウのスタイリング
 
+**型システム**:
+- TypeScript strict mode有効
+- React、Chrome拡張機能APIの型定義を使用
+- `tsconfig.json` でコンパイラオプションを管理
+
 **ビルド環境**:
-- Vite - 高速なビルドツール
+- Vite - 高速なビルドツール（TypeScript対応）
 - @crxjs/vite-plugin - Chrome拡張機能用のViteプラグイン
 - ビルド成果物は `dist/` ディレクトリに出力
 
 **その他のファイル**:
 - `manifest.json` - 拡張機能の設定（storage権限を要求）
 - `popup.html` - Reactアプリのマウントポイント
+- `vite.config.ts` - Vite設定（TypeScript）
 - `icon.png` - 拡張機能のアイコン（全サイズ）
 
-**データ永続化**: src/Popup.jsx内でlocalStorageを使用してメモ内容を保存しています。useEffectで初期読み込み、onChangeイベントで自動保存を実装。
+**データ永続化**: src/Popup.tsx内でlocalStorageを使用してメモ内容を保存しています。useEffectで初期読み込み、onChangeイベントで自動保存を実装。型安全な実装により、バグの早期発見が可能。
 
 **自動保存パターン**: メモはReactのonChangeイベントごとに自動保存されます。明示的な保存ボタンは不要です。
 
@@ -91,13 +97,14 @@ npm run dev
 
 ```
 memo-extension/
-├── src/                # ソースコード
-│   ├── Popup.jsx      # メインReactコンポーネント
-│   ├── main.jsx       # Reactエントリーポイント
+├── src/                # ソースコード（TypeScript）
+│   ├── Popup.tsx      # メインReactコンポーネント
+│   ├── main.tsx       # Reactエントリーポイント
 │   └── popup.css      # スタイル
 ├── manifest.json      # 拡張機能マニフェスト（Manifest V3）
 ├── popup.html         # HTMLエントリーポイント
-├── vite.config.js     # Vite設定
+├── vite.config.ts     # Vite設定（TypeScript）
+├── tsconfig.json      # TypeScript設定
 ├── package.json       # 依存関係とスクリプト
 ├── icon.png           # 拡張機能アイコン
 ├── dist/              # ビルド出力（gitignore）

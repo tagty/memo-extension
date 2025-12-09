@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, ChangeEvent } from 'react'
 import './popup.css'
 
-function Popup() {
-  const [memo, setMemo] = useState('')
+function Popup(): JSX.Element {
+  const [memo, setMemo] = useState<string>('')
 
   // 初期読み込み
   useEffect(() => {
@@ -11,7 +11,7 @@ function Popup() {
   }, [])
 
   // 入力ごとに自動保存
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLTextAreaElement>): void => {
     const value = e.target.value
     setMemo(value)
     localStorage.setItem('memo', value)

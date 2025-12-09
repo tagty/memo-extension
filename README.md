@@ -52,7 +52,7 @@ Mini Memoは、Chromeツールバーから素早くアクセスできるシン�
 ## 技術スタック
 
 - **Manifest V3**: Chrome Extension Manifest V3形式
-- **フロントエンド**: React 19
+- **フロントエンド**: React 19 + TypeScript
 - **ビルドツール**: Vite + @crxjs/vite-plugin
 - **ストレージ**: localStorage API
 
@@ -61,12 +61,13 @@ Mini Memoは、Chromeツールバーから素早くアクセスできるシン�
 ```
 memo-extension/
 ├── src/
-│   ├── Popup.jsx      # Reactコンポーネント
-│   ├── main.jsx       # エントリーポイント
+│   ├── Popup.tsx      # Reactコンポーネント
+│   ├── main.tsx       # エントリーポイント
 │   └── popup.css      # スタイル
 ├── manifest.json      # 拡張機能の設定ファイル
 ├── popup.html         # ポップアップHTML
-├── vite.config.js     # Vite設定
+├── vite.config.ts     # Vite設定
+├── tsconfig.json      # TypeScript設定
 ├── package.json       # 依存関係
 ├── icon.png           # 拡張機能アイコン
 └── dist/              # ビルド出力（gitignore）
