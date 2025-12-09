@@ -5,15 +5,15 @@
 ## 優先度: 高
 
 ### データ永続化の改善
-- [ ] localStorageからChrome Storage APIへの移行 (popup.js:5, 9)
+- [ ] localStorageからChrome Storage APIへの移行 (src/Popup.jsx:8, 16)
   - manifest.jsonで`storage`権限を宣言済みだが、実装では未使用
   - Chrome Storage APIを使用することで、Chromeアカウント間での同期が可能になる
   - `chrome.storage.local`または`chrome.storage.sync`への移行を検討
 
 ### パフォーマンス最適化
-- [ ] 自動保存にデバウンス処理を追加 (popup.js:8-10)
-  - 現在はinputイベントごとに即座に保存されるため、入力が多い場合にパフォーマンスに影響する可能性
-  - 300-500ms程度のデバウンスを実装
+- [ ] 自動保存にデバウンス処理を追加 (src/Popup.jsx:14-17)
+  - 現在はonChangeイベントごとに即座に保存されるため、入力が多い場合にパフォーマンスに影響する可能性
+  - 300-500ms程度のデバウンスを実装（useDebounceフックなど）
 
 ### エラーハンドリング
 - [ ] ストレージ読み込み・保存時のエラーハンドリングを追加
@@ -31,7 +31,7 @@
 - [ ] フォントサイズ調整機能
   - ユーザーが読みやすいサイズに調整可能にする
 - [ ] ポップアップサイズの調整可能化
-  - 現在は280px固定 (popup.css:2)
+  - 現在は400px固定 (src/popup.css:2)
   - ユーザー設定でサイズ変更を可能にする
 
 ### 機能拡張
@@ -57,7 +57,7 @@
 
 ### 国際化（i18n）
 - [ ] 多言語対応の実装
-  - 現在は日本語のみ (popup.html:9)
+  - 現在は日本語のみ (src/Popup.jsx:26)
   - Chrome i18n APIを使用した多言語化
   - 英語、日本語などの言語パックを用意
 
@@ -76,9 +76,9 @@
 - [ ] テストの追加
   - ユニットテスト（Jest）
   - E2Eテスト（Playwright）
-- [ ] ビルドツールの導入
-  - Webpack、Vite、Rollupなど
-  - TypeScriptへの移行を検討
+- [x] ビルドツールの導入
+  - Viteと@crxjs/vite-pluginを導入済み
+  - TypeScriptへの移行は今後検討
 - [ ] CIパイプラインの構築
   - GitHub Actionsでの自動テスト・ビルド
 - [ ] リンター・フォーマッターの導入
@@ -105,6 +105,10 @@
 - [x] シンプルなUI/スタイリング
 - [x] Chrome Extension Manifest V3への準拠
 - [x] README.mdの作成
+- [x] ポップアップサイズの拡大（280px → 400px）
+- [x] React 19とViteの導入
+  - Reactベースのコンポーネント構成に移行
+  - Viteと@crxjs/vite-pluginによるビルド環境構築
 
 ---
 
@@ -117,3 +121,4 @@
 ## 更新履歴
 
 - 2025-12-09: 初版作成
+- 2025-12-09: React 19とViteの導入完了を反映
