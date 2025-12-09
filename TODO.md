@@ -5,13 +5,13 @@
 ## 優先度: 高
 
 ### データ永続化の改善
-- [ ] localStorageからChrome Storage APIへの移行 (src/Popup.jsx:8, 16)
+- [ ] localStorageからChrome Storage APIへの移行 (src/Popup.tsx:8, 16)
   - manifest.jsonで`storage`権限を宣言済みだが、実装では未使用
   - Chrome Storage APIを使用することで、Chromeアカウント間での同期が可能になる
   - `chrome.storage.local`または`chrome.storage.sync`への移行を検討
 
 ### パフォーマンス最適化
-- [ ] 自動保存にデバウンス処理を追加 (src/Popup.jsx:14-17)
+- [ ] 自動保存にデバウンス処理を追加 (src/Popup.tsx:14-17)
   - 現在はonChangeイベントごとに即座に保存されるため、入力が多い場合にパフォーマンスに影響する可能性
   - 300-500ms程度のデバウンスを実装（useDebounceフックなど）
 
@@ -57,7 +57,7 @@
 
 ### 国際化（i18n）
 - [ ] 多言語対応の実装
-  - 現在は日本語のみ (src/Popup.jsx:26)
+  - 現在は日本語のみ (src/Popup.tsx:26)
   - Chrome i18n APIを使用した多言語化
   - 英語、日本語などの言語パックを用意
 
@@ -78,7 +78,9 @@
   - E2Eテスト（Playwright）
 - [x] ビルドツールの導入
   - Viteと@crxjs/vite-pluginを導入済み
-  - TypeScriptへの移行は今後検討
+- [x] TypeScriptへの移行
+  - React 19 + TypeScriptの構成に移行済み
+  - strict mode有効で型安全性を確保
 - [ ] CIパイプラインの構築
   - GitHub Actionsでの自動テスト・ビルド
 - [ ] リンター・フォーマッターの導入
@@ -109,6 +111,9 @@
 - [x] React 19とViteの導入
   - Reactベースのコンポーネント構成に移行
   - Viteと@crxjs/vite-pluginによるビルド環境構築
+- [x] TypeScriptへの移行
+  - React 19 + TypeScriptで型安全なコードベースを実現
+  - strict mode有効化、Chrome拡張機能APIの型定義を追加
 
 ---
 
@@ -122,3 +127,4 @@
 
 - 2025-12-09: 初版作成
 - 2025-12-09: React 19とViteの導入完了を反映
+- 2025-12-09: TypeScriptへの移行完了を反映
