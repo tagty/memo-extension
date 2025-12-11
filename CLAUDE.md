@@ -46,7 +46,7 @@
 - `vite.config.ts` - Vite設定（TypeScript）
 - `icon.png` - 拡張機能のアイコン（全サイズ）
 
-**データ永続化**: src/Popup.tsx内でlocalStorageを使用してメモ内容を保存しています。useEffectで初期読み込み、onChangeイベントで自動保存を実装。型安全な実装により、バグの早期発見が可能。
+**データ永続化**: src/Popup.tsx内でlocalStorageを使用してメモ内容を保存しています。useStateの初期化関数で初期読み込み、onChangeイベントで自動保存を実装。型安全な実装により、バグの早期発見が可能。
 
 **自動保存パターン**: メモはReactのonChangeイベントごとに自動保存されます。明示的な保存ボタンは不要です。
 
@@ -80,6 +80,37 @@ npm run dev
 - コンポーネントの変更が即座に反映される
 
 **注意**: manifest.jsonなど一部のファイルを変更した場合は、Chrome拡張機能の手動リロードが必要です。
+
+### コード品質管理（Linter）
+
+このプロジェクトでは **ESLint + Prettier** を使用してコード品質を管理しています。
+
+**インストール済みツール**:
+- **ESLint**: TypeScript、React、React Hooksのベストプラクティスをチェック
+- **Prettier**: コードフォーマッターとして自動整形（Tailwind CSSクラスの自動ソート対応）
+- **eslint-plugin-react-refresh**: Vite HMR対応のチェック
+
+**利用可能なコマンド**:
+```bash
+npm run lint          # コードチェック
+npm run lint:fix      # 自動修正（推奨）
+npm run format        # Prettierでフォーマット
+npm run format:check  # フォーマットチェックのみ
+```
+
+**設定ファイル**:
+- `eslint.config.js` - ESLint設定（Flat Config形式）
+- `.prettierrc` - Prettier設定
+- `.prettierignore` - フォーマット除外設定
+
+**開発時のワークフロー**:
+1. コードを書く
+2. `npm run lint:fix` で自動修正
+3. ビルドまたはテスト実行
+
+**注意点**:
+- TypeScriptプロジェクトのため、`no-undef` ルールは無効化されています（TypeScriptコンパイラが型チェックを担当）
+- Prettierは保存時に自動実行するよう、エディタ設定を推奨
 
 ## 拡張機能の読み込み方法
 
@@ -120,6 +151,9 @@ memo-extension/
 ├── popup.html         # HTMLエントリーポイント
 ├── vite.config.ts     # Vite設定（TypeScript）
 ├── tsconfig.json      # TypeScript設定
+├── eslint.config.js   # ESLint設定（Flat Config）
+├── .prettierrc        # Prettier設定
+├── .prettierignore    # Prettierフォーマット除外設定
 ├── tailwind.config.js # Tailwind CSS設定
 ├── postcss.config.js  # PostCSS設定
 ├── package.json       # 依存関係とスクリプト
