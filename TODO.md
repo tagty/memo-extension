@@ -84,8 +84,8 @@
   - strict mode有効で型安全性を確保
 - [ ] CIパイプラインの構築
   - GitHub Actionsでの自動テスト・ビルド
-- [ ] リンター・フォーマッターの導入
-  - ESLint、Prettier
+- [x] リンター・フォーマッターの導入
+  - ESLint、Prettier、prettier-plugin-tailwindcss導入済み
 
 ### セキュリティ
 - [ ] Content Security Policy（CSP）の設定
@@ -126,6 +126,11 @@
   - 文字数カウンター機能の実装
   - テキストエリアのリサイズ有効化
   - タイトルを「Mini Memo」に変更
+- [x] リンター・フォーマッターの導入
+  - ESLint（TypeScript、React、React Hooks対応）
+  - Prettier（Tailwind CSSクラスの自動ソート対応）
+  - Flat Config形式のeslint.config.js
+  - React最適化（useStateの初期化関数パターンへの改善）
 
 ---
 
@@ -143,3 +148,4 @@
 - 2025-12-09: Tailwind CSSの導入完了を反映
 - 2025-12-10: モダン・ミニマルデザインへの刷新完了を反映
 - 2025-12-10: 文字数カウンター機能の実装完了を反映
+- 2025-12-11: リンター・フォーマッター（ESLint + Prettier）の導入完了を反映
