@@ -12,5 +12,13 @@
       "128": "icon.png"
     }
   },
-  "permissions": ["storage"]
+  "permissions": ["storage"],
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Alt+Shift+M"
+      },
+      "description": "メモを開く"
+    }
+  }
 }
