@@ -1,4 +1,4 @@
-import { useState, ChangeEvent } from 'react';
+import { useState, useRef, useEffect, ChangeEvent } from 'react';
 import './popup.css';
 
 function Popup() {
@@ -6,6 +6,14 @@ function Popup() {
   const [memo, setMemo] = useState<string>(
     () => localStorage.getItem('memo') || ''
   );
+
+  // textareaへの参照
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  // マウント時にtextareaにフォーカスを当てる
+  useEffect(() => {
+    textareaRef.current?.focus();
+  }, []);
 
   // 入力ごとに自動保存
   const handleChange = (e: ChangeEvent<HTMLTextAreaElement>): void => {
@@ -23,6 +31,7 @@ function Popup() {
         </h1>
       </div>
       <textarea
+        ref={textareaRef}
         id="memo"
         className="h-[400px] w-full rounded-xl border-0 bg-white p-4 text-sm leading-relaxed text-gray-700 shadow-lg transition-all duration-300 ease-in-out placeholder:text-gray-400 focus:shadow-xl focus:ring-2 focus:ring-indigo-500 focus:outline-none"
         value={memo}
