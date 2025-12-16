@@ -13,7 +13,8 @@ function Popup() {
     const loadMemo = async () => {
       try {
         const result = await chrome.storage.sync.get(['memo']);
-        setMemo(result.memo || '');
+        const savedMemo = result.memo;
+        setMemo(typeof savedMemo === 'string' ? savedMemo : '');
         textareaRef.current?.focus();
       } catch (err) {
         setError('メモの読み込みに失敗しました');
