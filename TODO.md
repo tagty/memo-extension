@@ -5,10 +5,10 @@
 ## 優先度: 高
 
 ### データ永続化の改善
-- [ ] localStorageからChrome Storage APIへの移行 (src/Popup.tsx:8, 16)
+- [x] localStorageからChrome Storage APIへの移行 (src/Popup.tsx:15-17, 34-36)
   - manifest.jsonで`storage`権限を宣言済みだが、実装では未使用
   - Chrome Storage APIを使用することで、Chromeアカウント間での同期が可能になる
-  - `chrome.storage.local`または`chrome.storage.sync`への移行を検討
+  - `chrome.storage.sync`への移行完了（#28）
 
 ### パフォーマンス最適化
 - [ ] 自動保存にデバウンス処理を追加 (src/Popup.tsx:14-17)
@@ -16,9 +16,10 @@
   - 300-500ms程度のデバウンスを実装（useDebounceフックなど）
 
 ### エラーハンドリング
-- [ ] ストレージ読み込み・保存時のエラーハンドリングを追加
-  - 現在はエラーが発生した場合の処理がない
-  - ユーザーへのエラー通知機能の追加
+- [x] ストレージ読み込み・保存時のエラーハンドリングを追加
+  - Chrome Storage APIへの移行時に実装済み（#28）
+  - エラー発生時にユーザーへ通知バナーを表示
+  - コンソールにエラーログを出力
 
 ## 優先度: 中
 
@@ -142,6 +143,15 @@
 - [x] フォーカス管理の改善
   - ポップアップ開始時にtextareaに自動フォーカス
   - useRefとuseEffectを使用して実装
+- [x] Chrome Storage APIへの移行
+  - localStorageからchrome.storage.syncへ移行
+  - Chromeアカウント間でのメモ同期が可能に
+  - エラーハンドリングの実装（読み込み・保存エラーの通知）
+  - TypeScript型チェックの強化
+- [x] 開発ワークフローの改善
+  - `npm run type-check`スクリプトの追加
+  - `npm test`スクリプトの追加（型チェック + Lint + ビルド）
+  - ローカルでCI/CDと同じチェックを実行可能に
 
 ---
 
@@ -162,3 +172,6 @@
 - 2025-12-11: リンター・フォーマッター（ESLint + Prettier）の導入完了を反映
 - 2025-12-12: キーボードショートカット機能の追加完了を反映
 - 2025-12-13: フォーカス管理の改善（ポップアップ開始時のtextarea自動フォーカス）完了を反映
+- 2025-12-16: Chrome Storage APIへの移行完了（localStorageからchrome.storage.syncへ）を反映
+- 2025-12-16: エラーハンドリングの追加完了を反映
+- 2025-12-16: 開発ワークフローの改善（型チェック・テストスクリプト追加）完了を反映
