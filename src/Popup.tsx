@@ -2,24 +2,43 @@ import { useState, useRef, useEffect, ChangeEvent } from 'react';
 import './popup.css';
 
 function Popup() {
-  // 初期読み込み（useStateの初期化関数を使用）
-  const [memo, setMemo] = useState<string>(
-    () => localStorage.getItem('memo') || ''
-  );
+  const [memo, setMemo] = useState<string>('');
+  const [error, setError] = useState<string | null>(null);
 
   // textareaへの参照
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-  // マウント時にtextareaにフォーカスを当てる
+  // マウント時にChrome Storage APIからデータを読み込み、textareaにフォーカスを当てる
   useEffect(() => {
-    textareaRef.current?.focus();
+    const loadMemo = async () => {
+      try {
+        const result = await chrome.storage.sync.get(['memo']);
+        setMemo(result.memo || '');
+        textareaRef.current?.focus();
+      } catch (err) {
+        setError('メモの読み込みに失敗しました');
+        console.error('Failed to load memo:', err);
+        textareaRef.current?.focus();
+      }
+    };
+
+    loadMemo();
   }, []);
 
   // 入力ごとに自動保存
-  const handleChange = (e: ChangeEvent<HTMLTextAreaElement>): void => {
+  const handleChange = async (
+    e: ChangeEvent<HTMLTextAreaElement>
+  ): Promise<void> => {
     const value = e.target.value;
     setMemo(value);
-    localStorage.setItem('memo', value);
+
+    try {
+      await chrome.storage.sync.set({ memo: value });
+      setError(null);
+    } catch (err) {
+      setError('メモの保存に失敗しました');
+      console.error('Failed to save memo:', err);
+    }
   };
 
   return (
@@ -30,6 +49,11 @@ function Popup() {
           Mini Memo
         </h1>
       </div>
+      {error && (
+        <div className="mb-3 rounded-lg bg-red-50 p-3 text-sm text-red-600">
+          {error}
+        </div>
+      )}
       <textarea
         ref={textareaRef}
         id="memo"
