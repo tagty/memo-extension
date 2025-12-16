@@ -105,10 +105,12 @@ GitHub issueと関連付ける場合は、必ずissue番号をブランチ名に
 
 **利用可能なコマンド**:
 ```bash
+npm run type-check    # TypeScript型チェック
 npm run lint          # コードチェック
 npm run lint:fix      # 自動修正（推奨）
 npm run format        # Prettierでフォーマット
 npm run format:check  # フォーマットチェックのみ
+npm test              # 型チェック + Lint + ビルドを一括実行（推奨）
 ```
 
 **設定ファイル**:
@@ -119,7 +121,7 @@ npm run format:check  # フォーマットチェックのみ
 **開発時のワークフロー**:
 1. コードを書く
 2. `npm run lint:fix` で自動修正
-3. ビルドまたはテスト実行
+3. `npm test` で型チェック、Lint、ビルドを実行（CI/CDと同じチェック）
 
 **注意点**:
 - TypeScriptプロジェクトのため、`no-undef` ルールは無効化されています（TypeScriptコンパイラが型チェックを担当）
@@ -139,10 +141,11 @@ npm run format:check  # フォーマットチェックのみ
 2. ブランチを作成（`feature/[issue番号]`、`fix/[issue番号]`など）
 3. コードを実装
 4. `npm run lint:fix` で自動修正
-5. **ドキュメントを更新（README.md、CLAUDE.md、TODO.md）**
-6. 変更をコミット
-7. プッシュしてPRを作成
-8. レビュー後にマージ
+5. `npm test` ですべてのチェックを実行（型チェック、Lint、ビルド）
+6. **ドキュメントを更新（README.md、CLAUDE.md、TODO.md）**
+7. 変更をコミット
+8. プッシュしてPRを作成
+9. レビュー後にマージ
 
 ## 拡張機能の読み込み方法
 

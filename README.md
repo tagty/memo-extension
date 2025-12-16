@@ -10,7 +10,7 @@ Mini Memoは、Chromeツールバーから素早くアクセスできるモダ�
 
 - ポップアップ形式のシンプルなメモ入力
 - 自動保存（入力と同時に保存）
-- localStorage によるローカルストレージ
+- Chrome Storage API によるクラウド同期（Chromeアカウント間でメモを同期）
 - キーボードショートカット（`Alt+Shift+M` でポップアップを開く）
 - ポップアップ開始時に自動的にテキストエリアにフォーカス
 - モダン・ミニマルなUI
@@ -67,7 +67,7 @@ Mini Memoは、Chromeツールバーから素早くアクセスできるモダ�
 - **フロントエンド**: React 19 + TypeScript
 - **スタイリング**: Tailwind CSS v4
 - **ビルドツール**: Vite + @crxjs/vite-plugin
-- **ストレージ**: localStorage API
+- **ストレージ**: Chrome Storage API (chrome.storage.sync)
 
 ## ファイル構成
 
@@ -113,6 +113,27 @@ npm run dev
 ```
 
 開発モード起動後、Chromeで拡張機能を読み込むと、コード変更が自動的に反映されます。ただし、manifest.jsonなど一部のファイルを変更した場合は、手動でリロードが必要です。
+
+### テストとコード品質
+
+コードをプッシュする前に、以下のコマンドで品質チェックを実行できます。
+
+```bash
+# TypeScript型チェック
+npm run type-check
+
+# ESLintによるコードチェックと自動修正
+npm run lint:fix
+
+# すべてのチェックを一括実行（型チェック + Lint + ビルド）
+npm test
+```
+
+**推奨ワークフロー**:
+1. コードを変更
+2. `npm run lint:fix` で自動修正
+3. `npm test` ですべてのチェックを実行
+4. コミット・プッシュ
 
 ## ライセンス
 
